@@ -13,7 +13,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.set("strictQuery", false);
 mongoose
-    .connect(MONGO_URI,{useNewUrlParser : true})
+    .connect(MONGO_URI,{})
     .then(()=> console.log('Success to connect DB'))
     .catch(e => console.log(e.message));
 
