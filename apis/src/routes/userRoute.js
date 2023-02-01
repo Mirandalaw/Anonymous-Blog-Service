@@ -54,7 +54,7 @@ userRouter.put('/:userId', async (req,res)=>{
         const {age} = req.body;
         if(!age) return res.status(400).send({error: "age is required"});
         if(typeof age!=='number')return res.status(400).send({error : "age must be a number"});
-        const user = await User.findByIdAndUpdate(userId,{$set:{age}},{new:true});
+        const user = await User.findByIdAndUpdate(userId,{age},{new:true});
         return res.send({user});
     } catch (error) {
         console.log(error);
