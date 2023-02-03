@@ -1,7 +1,7 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import { User } from '../models/User.js';
-const userRouter = express.Router();
+const {Router} = require('express');
+const userRouter = Router();
+const mongoose = require('mongoose');
+const {User} = require('../models');
 
 userRouter.get('/',async(req,res)=>{
     try {
@@ -62,4 +62,4 @@ userRouter.put('/:userId', async (req,res)=>{
     }
 })
 
-export {userRouter};
+module.exports = {userRouter};

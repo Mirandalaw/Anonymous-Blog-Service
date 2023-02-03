@@ -1,10 +1,8 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import { userRouter } from './apis/src/routes/userRoute.js';
-import dotenv from 'dotenv';
-import { blogRouter } from './apis/src/routes/blogRoute.js';
-import {commentRouter} from './apis/src/routes/commentRoute.js';
-dotenv.config();
+const express = require('express');
+const mongoose = require('mongoose');
+const { userRouter,blogRouter} = require('./apis/src/routes');
+const {generateFakeData} = require('./faker');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT;
@@ -14,7 +12,9 @@ const server = async() =>{
     try {
         mongoose.set("strictQuery",false);
         await mongoose.connect(MONGO_URI,{});
-        mongoose.set('debug',true);
+        // mongoose.set('debug',true);
+        // await generateFakeData(100,10,300);
+
         app.use(express.json());
         app.use(express.urlencoded({extended:false}));
         app.use('/user',userRouter);

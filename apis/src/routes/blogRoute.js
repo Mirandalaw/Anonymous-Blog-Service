@@ -1,9 +1,8 @@
-import express from 'express';
-import { isValidObjectId } from 'mongoose';
-import { Blog } from '../models/Blog.js';
-import { User } from '../models/User.js';
-import {commentRouter} from '../routes/commentRoute.js';
-const blogRouter = express.Router();
+const {Router} = require('express')
+const blogRouter = Router();
+const {Blog,User} = require('../models');
+const {isValidObjectId} =require('mongoose');
+const {commentRouter} = require('../routes/commentRoute');
 
 blogRouter.use('/:blogId/comment',commentRouter);
 
@@ -81,4 +80,5 @@ blogRouter.patch('/:blogId/live',async(req,res)=>{
         res.status(500).send({error : error.message});
     }
 });
-export {blogRouter};
+
+module.exports = {blogRouter};
