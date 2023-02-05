@@ -29,7 +29,7 @@ blogRouter.post('/',async(req,res)=>{
 
 blogRouter.get('/',async(req,res)=>{
     try {
-        const blogs = await Blog.find({});
+        const blogs = await Blog.find({}).limit(10);
         res.send(blogs);
     } catch (error) {
         console.log(error);
