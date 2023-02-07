@@ -30,8 +30,8 @@ commentRouter.get('/',async(req,res)=>{
     const {blogId} = req.params;
     if(!isValidObjectId(blogId)) return res.status(400).send({err : "blogId is invalid"});
 
-    const comment = await Blog.find({blog : blogId});
-    res.send({comment});
+    const comment = await Comment.find({blog : blogId}).limit(20);
+    return res.send({comment});
 })
 
 module.exports = {commentRouter};
