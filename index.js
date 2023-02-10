@@ -12,7 +12,7 @@ const server = async() =>{
     try {
         mongoose.set("strictQuery",false);
         await mongoose.connect(MONGO_URI,{});
-        // mongoose.set('debug',true);
+        mongoose.set('debug',true);
         // await generateFakeData(100,10,300);
 
         app.use(express.json());
