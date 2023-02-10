@@ -7,7 +7,8 @@ const URI = `http://localhost:${PORT}`;
 
 const test = async() =>{
     console.time("loading time : ");
-    let {data:blogs} = await axios.get(`${URI}/blog`);
+    // let {data:blogs} = 
+    await axios.get(`${URI}/blog`);
     // blogs = await Promise.all(
     //     blogs.map(async (blog)=>{
     //     const [res1, res2] = await Promise.all([
@@ -23,7 +24,7 @@ const test = async() =>{
     //     }));
     //     return blog;
     // }));
-    // // console.dir(blogs[0],{depth : 10});
+    // console.dir(blogs[0],{depth : 10});
     console.timeEnd("loading time : ");
 };
 

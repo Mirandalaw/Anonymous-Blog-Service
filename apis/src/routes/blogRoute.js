@@ -9,13 +9,13 @@ blogRouter.use('/:blogId/comment',commentRouter);
 blogRouter.post('/',async(req,res)=>{
     try {
         const {title,content,islive,userId} = req.body;
-        if(typeof title !=='string') res.status(400).send({err:"title is required"});
-        if(typeof content !=='string') res.status(400).send({err:"content is required"});
-        if(islive &&islive !=="boolean") res.status(400).send({err:"islive must be a boolean"});
-        if(!isValidObjectId(userId)) res.status(400).send({err:"userId is invalid"});
+        if(typeof title !=='string') return res.status(400).send({err:"title is required"});
+        if(typeof content !=='string') return res.status(400).send({err:"content is required"});
+        if(islive && typeof(islive) !=="boolean") return res.status(400).send({err:"islive must be a boolean"});
+        if(!isValidObjectId(userId)) return res.status(400).send({err:"userId is invalid"});
         
         let user = await User.findById(userId);
-        if(!user) res.status(400).send({err:"user does not exist"});
+        if(!user) return res.status(400).send({err:"user does not exist"});
 
         let blog = new Blog({...req.body,user});
         await blog.save();
@@ -29,9 +29,17 @@ blogRouter.post('/',async(req,res)=>{
 
 blogRouter.get('/',async(req,res)=>{
     try {
-        let blogs = await Blog.find({})
-            .limit(10)
-            .populate([{path:"user"}, {path : "comments", populate : {path:"user"}}]);
+        let blogs = await Blog.find({}).limit(20);
+            // .select('title content')
+            // .populate([{path : "user"},{path:"comments"}
+                // {path:"user",select : 'name fullName'},
+                // {
+                //     path : "comments",
+                //     select : "content",
+                //     match : {user : "63e65962e61b7b7f6c5161d0"},
+                //     populate : {path:"user",select : "name fullName"},
+                // },
+            // ]);
         res.send(blogs);
     } catch (error) {
         console.log(error);

@@ -13,14 +13,17 @@ commentRouter.post('/',async(req,res)=>{
 
         // 동기적으로 실행 -> 비동기적으로 동시에 실행할 수 있게함으로써 Response 시간 개선하기
         const [blog,user] = await Promise.all(
-            [Blog.findByIdAndUpdate(blogId),
-            User.findByIdAndUpdate(userId)]
+            [Blog.findById(blogId),
+            User.findById(userId)]
         )
         if(!blog.islive)return res.status(400).send({err :" blog is not available"});
         if(!blog||!user)return res.status(400).send({err : "blog or user does not exist"});
 
-        const comment = new Comment({content,user,blog});
-        await comment.save();
+        const comment = new Comment({content,user,userFullName : `${user.name.first} ${user.name.last}`,blog});
+        await Promise.all([
+            comment.save(),
+            Blog.updateOne({_id : blogId},{$push : {comment : comment}})
+        ]);
         return res.send({comment});
     } catch (error) {
         return res.status(400).send({error : error.message});
