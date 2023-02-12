@@ -35,6 +35,19 @@ commentRouter.get('/',async(req,res)=>{
 
     const comment = await Comment.find({blog : blogId}).limit(20);
     return res.send({comment});
-})
+});
+commentRouter.patch('/:commentId',async(req,res)=>{
+    const {commentId} =req.params;
+    const {content} = req.body;
+    console.log(content);
+    if(typeof content !=="string"){
+        return res.status(400).send({err : "content is required"});
+    }
 
+    const [comment] = await Promise.all([
+        Comment.findByIdAndUpdate({_id : commentId},{content},{new:true}),
+        Blog.updateOne({"comment._id" : commentId},{"comment.$.content" : content})
+    ]);
+    return res.send({comment});
+});
 module.exports = {commentRouter};

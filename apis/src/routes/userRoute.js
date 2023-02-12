@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const userRouter = Router();
 const mongoose = require('mongoose');
-const {User} = require('../models');
+const {User, Blog} = require('../models');
 
 userRouter.get('/',async(req,res)=>{
     try {
@@ -51,10 +51,19 @@ userRouter.delete('/:userId',async (req,res)=>{
 userRouter.put('/:userId', async (req,res)=>{
     try {
         const {userId} = req.params;
-        const {age} = req.body;
-        if(!age) return res.status(400).send({error: "age is required"});
-        if(typeof age!=='number')return res.status(400).send({error : "age must be a number"});
-        const user = await User.findByIdAndUpdate(userId,{age},{new:true});
+        if(!mongoose.isValidObjectId(userId))return res.status(400).send({err:"invalid userId"});
+        const {age,name} = req.body;
+        if(!age && !name) return res.status(400).send({error: "age or name is required"});
+        if(age&&typeof age!=='number')return res.status(400).send({err : "age must be a number"});
+        if(name && typeof name.first !=="string" && typeof name.last !=='string')return res.status(400).send({err : "first and last name are strings"});
+        // const user = await User.findByIdAndUpdate(userId,{age},{new:true});
+        let user = await User.findById(userId);
+        if (age) user.age = age;
+        if(name){
+            user.name = name;
+            await Blog.updateMany({ "user._id" : userId},{ "user.name" : name});
+        }
+        await user.save();
         return res.send({user});
     } catch (error) {
         console.log(error);
