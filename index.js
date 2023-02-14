@@ -12,7 +12,7 @@ const server = async() =>{
     try {
         mongoose.set("strictQuery",false);
         await mongoose.connect(MONGO_URI,{});
-        mongoose.set('debug',true);
+        // mongoose.set('debug',true);
 
         app.use(express.json());
         app.use(express.urlencoded({extended:false}));
@@ -21,9 +21,7 @@ const server = async() =>{
 
         app.listen(PORT,async ()=>{
             console.log(`Express Server is listening at ${PORT}`);
-            // for(let i=0;i<20;++i){
-            //     await generateFakeData(3,5,20);
-            // }
+            // await generateFakeData(3,5,20);
         })
     } catch (error) {
         console.log(error);

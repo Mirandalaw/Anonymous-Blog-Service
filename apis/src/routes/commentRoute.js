@@ -50,4 +50,11 @@ commentRouter.patch('/:commentId',async(req,res)=>{
     ]);
     return res.send({comment});
 });
+commentRouter.delete('/:commentId',async(req,res)=>{
+    const {commentId} = req.params;
+    if(!isValidObjectId(commentId)) return res.status(400).send({err: "invalid commentId "});
+    const comment = await Comment.findOneAndDelete({"_id" : commentId});
+    await Blog.updateOne({"comment._id" : commentId},{$pull : {comment : {_id : commentId}}},{new:true});
+    return res.send({comment});
+})
 module.exports = {commentRouter};
