@@ -21,7 +21,7 @@ const server = async() =>{
 
         app.listen(PORT,async ()=>{
             console.log(`Express Server is listening at ${PORT}`);
-            // await generateFakeData(3,5,20);
+            await generateFakeData(10,2,10);
         })
     } catch (error) {
         console.log(error);

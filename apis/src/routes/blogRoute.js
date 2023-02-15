@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const blogRouter = Router();
-const {Blog,User} = require('../models');
+const {Blog,User,Comment} = require('../models');
 const {isValidObjectId} =require('mongoose');
 const {commentRouter} = require('../routes/commentRoute');
 
@@ -29,7 +29,8 @@ blogRouter.post('/',async(req,res)=>{
 
 blogRouter.get('/',async(req,res)=>{
     try {
-        let blogs = await Blog.find({}).limit(20);
+        let {page = 0} = req.query;
+        let blogs = await Blog.find({}).sort({updatedAt : -1}).skip(page * 3).limit(3); 
             // .select('title content')
             // .populate([{path : "user"},{path:"comments"}
                 // {path:"user",select : 'name fullName'},
@@ -53,6 +54,7 @@ blogRouter.get('/:blogId',async(req,res)=>{
         if(!isValidObjectId(blogId)) res.status(400).send({err:"blogId is invalid"});
     
         const blog = await Blog.findOne({_id:blogId});
+        // const commentCount = await Comment.find({blog : blogId}).countDocuments;
         return res.send({blog});
     } catch (error) {
         console.log(error);

@@ -14,10 +14,10 @@ const BlogSchema = new Schema({
         },
     },
     comment : [CommentSchema],
-},
-    
-{timestamps : true}
+    commentsCount : {type : Number, required: true, default : 0},
+    },{timestamps : true}
 );
+BlogSchema.index({"user._id": 1, updateAt : 1});
 
 // BlogSchema.virtual("comments",{
 //     ref : "comment",
