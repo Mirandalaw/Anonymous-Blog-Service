@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon index.js",
-    "dev": "nodemon --ignore client.js src/index/js"
+    "server": "nodemon server.js",
+    "dev": "nodemon --ignore client.js src/server.js"
   },
   "repository": {
     "type": "git",
