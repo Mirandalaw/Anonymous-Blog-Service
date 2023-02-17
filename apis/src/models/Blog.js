@@ -1,23 +1,23 @@
-const {Schema,model,Types } = require('mongoose');
-const {CommentSchema} = require('./Comment');
+const { Schema, model, Types } = require('mongoose');
+const { CommentSchema } = require('./Comment');
 
 const BlogSchema = new Schema({
-    title : {type: String,required :true},
-    content : {type:String,required:true},
-    islive : {type : Boolean , required : true, default : false},
-    user : {
-        _id : { type : Types.ObjectId, required : true, ref: "user"},
-        username : { type : String, required : true},
-        name : {
-            first : { type : String, required : true},
-            last : { type : String, required : true},
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    islive: { type: Boolean, required: true, default: false },
+    user: {
+        _id: { type: Types.ObjectId, required: true, ref: "user" },
+        username: { type: String, required: true },
+        name: {
+            first: { type: String, required: true },
+            last: { type: String, required: true },
         },
     },
-    comment : [CommentSchema],
-    commentsCount : {type : Number, required: true, default : 0},
-    },{timestamps : true}
+    comment: [CommentSchema],
+    commentsCount: { type: Number, required: true, default: 0 },
+}, { timestamps: true }
 );
-BlogSchema.index({"user._id": 1, updateAt : 1});
+BlogSchema.index({ "user._id": 1, updateAt: 1 });
 
 // BlogSchema.virtual("comments",{
 //     ref : "comment",
@@ -28,6 +28,6 @@ BlogSchema.index({"user._id": 1, updateAt : 1});
 // BlogSchema.set("toObject",{virtuals : true}); 
 // BlogSchema.set("toJSON", {virtuals : true});
 
-const Blog = model('blog',BlogSchema);
+const Blog = model('blog', BlogSchema);
 
-module.exports = {Blog};
+module.exports = { Blog };
