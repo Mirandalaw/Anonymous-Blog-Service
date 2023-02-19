@@ -25,7 +25,8 @@ const searchForId = async (req, res) => {
     try {
         const { blogId } = req.params;
         if (!isValidObjectId(blogId)) res.status(400).send({ err: "blogId is invalid" });
-        const blog = await blogService.getOneBlog(blogId);        // const commentCount = await Comment.find({blog : blogId}).countDocuments;
+        const blog = await blogService.getOneBlog(blogId);
+        // const commentCount = await Comment.find({blog : blogId}).countDocuments;
         return res.send({ blog });
     } catch (error) {
         console.log(error);
@@ -40,11 +41,9 @@ const createBlog = async (req, res) => {
         if (islive && typeof (islive) !== "boolean") return res.status(400).send({ err: "islive must be a boolean" });
         if (!isValidObjectId(userId)) return res.status(400).send({ err: "userId is invalid" });
 
-        let user = await User.findById(userId);
+        const user = await userService.getOneBlog(userId);
         if (!user) return res.status(400).send({ err: "user does not exist" });
-
-        let blog = new Blog({ ...req.body, user });
-        await blog.save();
+        const blog = new blogService.makeBlog(...req.body, user);
         return res.send({ blog });
 
     } catch (error) {
