@@ -1,7 +1,5 @@
 const { isValidObjectId, startSession } = require('mongoose');
-const commentService = require('../services/comment.service');
-const blogService = require("../services/blog.service");
-const userService = require('../services/user.service');
+const { commentService, blogService, userService } = require('../services');
 const searchForId = async (req, res) => {
     let { page = 0 } = req.query;
     page = parseInt(page);

@@ -27,6 +27,7 @@
     "mongoose": "^6.8.4"
   },
   "devDependencies": {
+    "express-validator": "^6.15.0",
     "nodemon": "^2.0.20"
   }
 }

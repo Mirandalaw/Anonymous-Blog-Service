@@ -29,5 +29,4 @@ BlogSchema.index({ "user._id": 1, updateAt: 1 });
 // BlogSchema.set("toJSON", {virtuals : true});
 
 const Blog = model('blog', BlogSchema);
-
 module.exports = { Blog };

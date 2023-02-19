@@ -18,9 +18,8 @@ const getOneBlog = async (blogId) => {
     }
 }
 
-const makeBlog = async () => {
+const makeBlog = async (body, user) => {
     try {
-        let user = await User.findById(userId);
         let blog = new Blog({ ...req.body, user });
         await blog.save();
         return blog;
