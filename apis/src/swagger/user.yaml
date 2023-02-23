@@ -1,0 +1,16 @@
+componets:
+  schemas:
+    User:
+      properties:
+        username :
+          type: string
+          description : 유저 이름
+        name : 
+          type: object
+          description: 유저 first,last 이름
+        age : 
+          type : integer
+          description : 유저 나이
+        email:
+          type : string
+          description : 유저 이메일

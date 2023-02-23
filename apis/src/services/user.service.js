@@ -24,6 +24,7 @@ const makeUser = async (userInfo) => {
         await user.save();
         return user;
     } catch (error) {
+        console.log(error);
         throw new Error('Error while making an user!!');
     }
 }
