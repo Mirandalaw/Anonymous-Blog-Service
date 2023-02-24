@@ -12,7 +12,10 @@ OS : Macbook Air (RAM 16GB)
 
 - Schema
 
+
 ![Schema설계](https://user-images.githubusercontent.com/74170593/221196846-41260568-b90a-4803-acac-e371bafdd392.png)
+
+
 
 - Diagram
 
