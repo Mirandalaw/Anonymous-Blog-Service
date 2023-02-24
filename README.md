@@ -12,12 +12,12 @@ OS : Macbook Air (RAM 16GB)
 
 - Schema
 
-![Untitled]
-(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/662a143e-f795-4dde-ab4f-779a465531b4/Untitled.png)
+![Schema설계](https://user-images.githubusercontent.com/74170593/221196846-41260568-b90a-4803-acac-e371bafdd392.png)
+
 - Diagram
 
-![Untitled]
-(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f7c87808-ace6-471a-9648-d28c398eedc1/Untitled.png)
+![Diagram](https://user-images.githubusercontent.com/74170593/221196945-32aecb86-921b-4f23-9213-ba6278b32a9d.png)
+
 ## URI 설계
 
 | URI | Http Method | Contents |
