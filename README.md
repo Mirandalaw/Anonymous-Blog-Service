@@ -1,5 +1,3 @@
-[정리](https://humane-map-4ba.notion.site/Restful-board-example-100dccee74b149e2be157e85f1973ecd)
-
 개발 IDE : VisualStudio Code
 
 사용 스택 : Node.js, JavaScript, MongoDB, AWS Lightsail,pm2, Swagger
@@ -39,3 +37,6 @@ OS : Macbook Air (RAM 16GB)
 |  | POST | 댓글 생성 |
 | /:commentId | PATCH | 댓글 수정 |
 | /:commentId | DELETE | 댓글 삭제 |
+
+
+[정리](https://humane-map-4ba.notion.site/Restful-board-example-100dccee74b149e2be157e85f1973ecd)
