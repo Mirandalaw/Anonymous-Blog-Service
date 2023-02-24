@@ -1,8 +1,8 @@
- |개발 IDE : VisualStudio Code|
- |사용 스택 : Node.js, JavaScript, MongoDB, AWS Lightsail,pm2, Swagger|
- |OS : Macbook Air (RAM 16GB)|
- |내용 : 게시판|
- |데이터 베이스 설계|
+ | 개발 IDE : VisualStudio Code |
+ | 사용 스택 : Node.js, JavaScript, MongoDB, AWS Lightsail,pm2, Swagger |
+ | OS : Macbook Air (RAM 16GB) |
+ | 내용 : 게시판 |
+ | 데이터 베이스 설계 |
 
 - Schema
 
