@@ -39,8 +39,12 @@ OS : Macbook Air (RAM 16GB)
 | /:commentId | DELETE | 댓글 삭제 |
 
 
-[개발 중 에러](https://humane-map-4ba.notion.site/3b28c167876a4bffabfc4c31bdf6ce68)
-[새로 학습한 내용](https://humane-map-4ba.notion.site/5a10b94a41b14e18b902566cf8726fa8)
-[성능 개선](https://humane-map-4ba.notion.site/839713eb46f24469be6e931c8d8a2987)
-[Update에 방법에 대한 고찰](https://humane-map-4ba.notion.site/Update-359ea1ab1b574c08a6991e5b33c2f76e)
-[TODO](https://humane-map-4ba.notion.site/TODO-e93b044c5f7942559a1959e3e9103abd)
+- [개발 중 에러](https://humane-map-4ba.notion.site/3b28c167876a4bffabfc4c31bdf6ce68)
+
+- [새로 학습한 내용](https://humane-map-4ba.notion.site/5a10b94a41b14e18b902566cf8726fa8)
+
+- [성능 개선](https://humane-map-4ba.notion.site/839713eb46f24469be6e931c8d8a2987)
+
+- [Update에 방법에 대한 고찰](https://humane-map-4ba.notion.site/Update-359ea1ab1b574c08a6991e5b33c2f76e)
+
+- [TODO](https://humane-map-4ba.notion.site/TODO-e93b044c5f7942559a1959e3e9103abd)
