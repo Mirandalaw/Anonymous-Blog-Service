@@ -47,7 +47,9 @@ VSCODE에서 사용 방법
 
  > 2. npm install
  
- > 3. localhost:3000/api-docs
+ > 3. npm run dev
+ 
+ > 4. chrome 주소창에 => localhost:3000/api-docs
   
  차례대로 수행한 뒤 api-docs에서 api 테스트를 진행할 수 있습니다.
  
