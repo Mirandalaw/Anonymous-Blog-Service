@@ -43,11 +43,11 @@
 
 사용 방법
 
- 1. git clone https://github.com/Mirandalaw/Restful-board-example.git
+ > 1. git clone https://github.com/Mirandalaw/Restful-board-example.git
 
- 2. npm install
+ > 2. npm install
  
- 3. localhost:3000/api-docs
+ > 3. localhost:3000/api-docs
   
  차례대로 수행한 뒤 api-docs에서 api 테스트를 진행할 수 있습니다.
  
