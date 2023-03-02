@@ -41,7 +41,7 @@
 
 ## Swagger 사용 방법 : 
 
-사용 방법
+VSCODE에서 사용 방법
 
  > 1. git clone https://github.com/Mirandalaw/Restful-board-example.git
 
