@@ -39,6 +39,15 @@
 | /:commentId | PATCH | 댓글 수정 |
 | /:commentId | DELETE | 댓글 삭제 |
 
+##Swagger 사용 방법 : 
+
+ git clone (GIT REPOSITORY URI)
+
+ npm install
+
+ localhost:3000/api-docs
+
+ 
 
 - [개발 중 에러](https://humane-map-4ba.notion.site/3b28c167876a4bffabfc4c31bdf6ce68)
 
