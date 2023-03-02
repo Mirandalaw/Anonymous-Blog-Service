@@ -1,0 +1,722 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: My Board
+  description: This is project by JeongPark
+servers:
+  # Added by API Auto Mocking Plugin
+  # Added by API Auto Mocking Plugin
+  - description: BoardAPI
+    url: http://localhost:3000
+tags:
+  - name: user
+    description: User API
+  - name: blog
+    description: Blog API
+  - name: comment
+    description: Comment API
+paths:
+  /user:
+    get:
+      tags:
+        - user
+      summary: Get all user
+      description: '모든 유저 검색'
+      operationId: getAllUser
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    post:
+      tags: 
+        - user
+      summary: Create user
+      description: '유저 생성'
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+        '500': 
+          description: failed to connect
+  /user/{userId}:
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      description: '특정 유저 검색'
+      operationId: getUserByUserId
+      parameters:
+        - name: userId
+          in: path
+          description: 'The userId that needs to be found. Use user for testing. '
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Update user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          description: userId that need to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update on existent user in the store
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  $ref: '#/components/schemas/name'
+                age:
+                  type: integer
+                  example: 42
+          application/xml:
+            schema:
+              properties:
+                name:
+                  $ref: '#/components/schemas/name'
+                age:
+                  type: integer
+                  example: 42
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  $ref: '#/components/schemas/name'
+                age:
+                  type: integer
+                  example: 42
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: DeleteAPI decide carefully
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: The userId that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b270ef422ff7ecc29f"
+                  user:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Invaild
+        '404':
+          description: User not found
+  /blog:
+    get:
+      tags:
+        - blog
+      summary: Get all blog
+      description: All blog can find
+      operationId: getAllBlog
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+            application/xml:
+              schema:
+                properties: 
+                  _id : 
+                    type: string
+                    example: "63ec97b370ef422ff7ecc2c6"
+                  blog:  
+                    $ref: '#/components/schemas/Blog'
+        '404':
+          description: User not found
+    post:
+      tags:
+        - blog
+      summary: Create blog
+      description: create Blog for requsetBody
+      operationId: createBlog
+      requestBody:
+        description: Created blog object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postBlog'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/postBlog'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/postBlog'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/showBlog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/showBlog'
+  /blog/{blogId}:
+    get:
+      tags:
+        - blog
+      summary: Get blog by blogId
+      description: '특정 블로그 검색'
+      operationId: getBlogByBlogId
+      parameters:
+        - name: blogId
+          in: path
+          description: 'The blogId that needs to be fetched. Use blog for testing. '
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Blog'
+        '404':
+          description: User not found
+    put:
+      tags:
+        - blog
+      summary: Update blog
+      description: This can only be done by the logged in blog.
+      operationId: updateBlog
+      parameters:
+        - name: blogId
+          in: path
+          description: blogId that need to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update on existent blog
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                  example: "fourth title"
+                content:
+                  type: string
+                  example: "fourth content"
+          application/xml:
+            schema:
+              properties:
+                title:
+                  type: string
+                  example: "fourth title"
+                content:
+                  type: string
+                  example: "fourth content"
+          application/x-www-form-urlencoded:
+            schema:
+             properties:
+                title:
+                  type: string
+                  example: "fourth title"
+                content:
+                  type: string
+                  example: "fourth content"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Blog'
+        '404':
+          description: User not found
+  /blog/{blogId}/live:
+    patch:
+      tags:
+        - blog
+      summary: Update blog
+      description: This can only be done by the logged in blog.
+      operationId: updateBloginlive
+      parameters:
+        - name: blogId
+          in: path
+          description: blogId that need to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update on existent blog
+        content:
+          application/json:
+            schema:
+              properties:
+                islive:
+                  type: boolean
+          application/xml:
+            schema:
+              properties:
+                islive:
+                  type: boolean
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                islive:
+                  type: boolean
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Blog'
+        '404':
+          description: User not found
+  /blog/{blogId}/comment:
+    get:
+      tags:
+        - comment
+      summary: Get all comment
+      description: '모든 코맨트 검색'
+      operationId: getAllComment
+      parameters:
+        - name: blogId
+          in: path
+          description: blogId that need to be found to comment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+        '404':
+          description: User not found
+    post:
+      tags:
+        - comment
+      summary: Create comment
+      description: '코멘트 생성'
+      operationId: createComment
+      parameters:
+        - name: blogId
+          in: path
+          description: blogId that need to be found to comment
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Created comment object
+        content:
+          application/json:
+            schema:
+              properties:
+                content:
+                  type: string
+                  example: "Nemo aut aut expedita libero occaecati est eligendi."
+                userId:
+                  type: string
+                  example: "63ec97b270ef422ff7ecc29f"
+          application/xml:
+            schema:
+              properties:
+                content:
+                  type: string
+                  example: "Nemo aut aut expedita libero occaecati est eligendi."
+                userId:
+                  type: string
+                  example: "63ec97b270ef422ff7ecc29f"
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                content:
+                  type: string
+                  example: "Nemo aut aut expedita libero occaecati est eligendi."
+                userId:
+                  type: string
+                  example: "63ec97b270ef422ff7ecc29f"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+  /blog/{blogId}/comment/{commentId}:
+    patch:
+      tags:
+        - comment
+      summary: Update comment
+      description: comment update
+      operationId: updateComment
+      parameters:
+        - name: blogId
+          in: path
+          description: blogId that need to be updated
+          required: true
+          schema:
+            type: string
+        - name : commentId
+          in: path
+          description: commentId that need to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update on existent blog
+        content:
+          application/json:
+            schema:
+              properties:
+                content:
+                  type: string
+          application/xml:
+            schema:
+              properties:
+                content:
+                  type: string
+                
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                content:
+                  type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+        '404':
+          description: Comment or Blog is not found
+      
+    delete:
+      tags:
+        - comment
+      summary: delete comment
+      description: comment delete
+      operationId: deleteComment
+      parameters:
+        - name: blogId
+          in: path
+          description: blogId that need to be deleted
+          required: true
+          schema:
+            type: string
+        - name : commentId
+          in: path
+          description: commentId that need to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                properties:
+                  _id:
+                    type: string
+                    example: "63ec97b370ef422ff7ecc3bd"
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+        '404':
+          description: Comment or Blog is not found
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    Blog:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "63ec97b370ef422ff7ecc2c6"
+        title:
+          type: string
+          example: 'maxime illo aliquid'
+        content:
+          type: string
+          example: 'Sint delectus et aut assumenda atque asperiores officia.'
+        islive: 
+          type: boolean
+          example: false
+        user: 
+          type: object
+          properties:
+            _id:
+              type: string
+              example: "63ec97b270ef422ff7ecc29f"
+            username:
+              type: string
+              example: "Felipe.Spencer5"
+            name:
+              $ref: '#/components/schemas/name'
+        comment:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Comment'
+    Comment:
+      type: object
+      properties:
+        content:
+          type: string
+          example: "Nemo aut aut expedita libero occaecati est eligendi."
+        user:
+          type: string
+          example: "63ec97b270ef422ff7ecc29f"
+        userFullName:
+          type: string
+          example: "Ada Murray"
+        blog:
+          type: string
+          example: "63ec97b370ef422ff7ecc2c6"
+    User:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/name'
+        username:
+          type: string
+          example: "Felipe.Spencer5"
+        age:
+          type: integer
+          format: int64
+          example: 18
+        email:
+          type: string
+          example: "Moises93@gmail.com"
+      xml:
+       name: user
+    postBlog:
+      type: object
+      properties:
+        title:
+          type: string
+          example: 'maxime illo aliquid'
+        content:
+          type: string
+          example: 'Sint delectus et aut assumenda atque asperiores officia.'
+        user: 
+          type: string
+          example: "63ec97b270ef422ff7ecc29f"
+    showBlog:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "63ec97b370ef422ff7ecc2c6"
+        title:
+          type: string
+          example: 'maxime illo aliquid'
+        content:
+          type: string
+          example: 'Sint delectus et aut assumenda atque asperiores officia.'
+        islive: 
+          type: boolean
+          example: false
+        user: 
+          type: object
+          properties:
+            _id:
+              type: string
+              example: "63ec97b270ef422ff7ecc29f"
+            username:
+              type: string
+              example: "Felipe.Spencer5"
+            name:
+              $ref: '#/components/schemas/name'
+        comment:
+          type: array
+          xml:
+            wrapped: true
+          items: {}
+    name:
+      type: object
+      properties:
+        first:
+          type: string
+          example: "Ada"
+        last:
+          type: string
+          example: "Murray"

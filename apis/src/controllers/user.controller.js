@@ -4,7 +4,7 @@ const userService = require('../services/user.service');
 const searchAll = async (req, res) => {
     try {
         const user = await userService.getUser();
-        return res.send({ user });
+        return res.status(200).send({ user });
     } catch (error) {
         console.log(error);
         return res.status(500).send({ error: error.message });

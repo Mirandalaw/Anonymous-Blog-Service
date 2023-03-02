@@ -3,17 +3,8 @@ const userRouter = Router();
 const { check } = require('express-validator');
 const validationErrorChecker = require('../middlewares/validator');
 const userController = require('../controllers/user.controller');
-/**
- * @swagger
- *  /user:
- *   get:
- *    responses:
- *     200:
- *       schema :
- *        $ref : '#/components/schemas/User'
- */
-userRouter.get('/', userController.searchAll);
 
+userRouter.get('/', userController.searchAll);
 userRouter.get('/:userId', [
     check('userId').isMongoId(),
     validationErrorChecker,

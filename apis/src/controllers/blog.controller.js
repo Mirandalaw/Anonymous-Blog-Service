@@ -1,6 +1,6 @@
 const { isValidObjectId } = require('mongoose');
 const blogService = require('../services/blog.service');
-
+const userService = require('../services/user.service');
 const searchAllBlog = async (req, res) => {
     try {
         let { page = 0 } = req.query;
@@ -24,7 +24,6 @@ const searchAllBlog = async (req, res) => {
 const searchForId = async (req, res) => {
     try {
         const { blogId } = req.params;
-        if (!isValidObjectId(blogId)) res.status(400).send({ err: "blogId is invalid" });
         const blog = await blogService.getOneBlog(blogId);
         // const commentCount = await Comment.find({blog : blogId}).countDocuments;
         return res.send({ blog });
@@ -36,14 +35,10 @@ const searchForId = async (req, res) => {
 const createBlog = async (req, res) => {
     try {
         const { title, content, islive, userId } = req.body;
-        if (typeof title !== 'string') return res.status(400).send({ err: "title is required" });
-        if (typeof content !== 'string') return res.status(400).send({ err: "content is required" });
-        if (islive && typeof (islive) !== "boolean") return res.status(400).send({ err: "islive must be a boolean" });
-        if (!isValidObjectId(userId)) return res.status(400).send({ err: "userId is invalid" });
 
-        const user = await userService.getOneBlog(userId);
+        const user = await userService.getOneUser(userId);
         if (!user) return res.status(400).send({ err: "user does not exist" });
-        const blog = new blogService.makeBlog(...req.body, user);
+        const blog = await blogService.makeBlog(title, content, islive, user);
         return res.send({ blog });
 
     } catch (error) {
@@ -54,11 +49,7 @@ const createBlog = async (req, res) => {
 const patchBlog = async (req, res) => {
     try {
         const { blogId } = req.params;
-        if (!isValidObjectId(blogId)) res.status(400).send({ err: "blogId is invalid" });
-
         const { islive } = req.body;
-        if (typeof islive !== "boolean") res.status(400).send({ err: "boolean islive is required" });
-
         const blog = await blogService.patchBlog(blogId, islive);
         return res.send({ blog });
     } catch (error) {
@@ -69,10 +60,7 @@ const patchBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
     try {
         const { title, content } = req.body;
-        if (typeof title !== 'string') res.status(400).send({ err: "title is required" });
-        if (typeof content !== 'string') res.status(400).send({ err: "content is required" });
         const { blogId } = req.params;
-        if (!isValidObjectId(blogId)) res.status(400).send({ err: "blogId is invalid" });
         const blog = await blogService.refreshBlog(blogId, title, content);
         return res.send({ blog });
     } catch (error) {
@@ -80,6 +68,5 @@ const updateBlog = async (req, res) => {
         res.status(500).send({ error: error.message });
     }
 }
-
 
 module.exports = { searchAllBlog, searchForId, createBlog, patchBlog, updateBlog };

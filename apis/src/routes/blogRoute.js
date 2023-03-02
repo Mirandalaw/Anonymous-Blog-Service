@@ -1,20 +1,32 @@
 const { Router } = require('express')
 const { commentRouter } = require('../routes/commentRoute');
 const blogController = require('../controllers/blog.controller');
-const { body } = require('express-validator');
-
+const { check } = require('express-validator');
+const validationErrorChecker = require('../middlewares/validator');
 const blogRouter = Router();
 blogRouter.use('/:blogId/comment', commentRouter);
 
 blogRouter.post('/', [
-    body('title').exists().isString(),
-    body('content').exists().isString(),
-    body('islive').exists().isBoolean(),
-
+    check('title').exists().isString(),
+    check('content').exists().isString(),
+    check('userId').isMongoId(),
+    validationErrorChecker,
 ], blogController.createBlog);
 blogRouter.get('/', blogController.searchAllBlog);
-blogRouter.get('/:blogId', blogController.searchForId);
-blogRouter.put('/:blogId', blogController.updateBlog);
-blogRouter.patch('/:blogId/live', blogController.patchBlog);
+blogRouter.get('/:blogId', [
+    check('blogId').isMongoId(),
+    validationErrorChecker,
+], blogController.searchForId);
+blogRouter.put('/:blogId', [
+    check('blogId').isMongoId(),
+    check('title').exists().isString(),
+    check('content').exists().isString(),
+    validationErrorChecker,
+], blogController.updateBlog);
+blogRouter.patch('/:blogId/live', [
+    check('blogId').isMongoId(),
+    check('live').exists().isBoolean(),
+    validationErrorChecker,
+], blogController.patchBlog);
 
 module.exports = { blogRouter };
