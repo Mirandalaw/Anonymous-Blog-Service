@@ -39,6 +39,20 @@
 | /:commentId | PATCH | 댓글 수정 |
 | /:commentId | DELETE | 댓글 삭제 |
 
+## Swagger 사용 방법 : 
+
+VSCODE에서 사용 방법
+
+ > 1. git clone https://github.com/Mirandalaw/Restful-board-example.git
+
+ > 2. npm install
+ 
+ > 3. npm run dev
+ 
+ > 4. chrome 주소창에 => localhost:3000/api-docs
+  
+ 차례대로 수행한 뒤 api-docs에서 api 테스트를 진행할 수 있습니다.
+ 
 
 - [개발 중 에러](https://humane-map-4ba.notion.site/3b28c167876a4bffabfc4c31bdf6ce68)
 
